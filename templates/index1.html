@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>INBOX-SECURE</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+    <style>
+        html, body {
+            height: 100%;
+            overflow: auto;
+        }
+    </style>
+    <style>
+                .login {
+            text-align: center;
+            top: 200px;
+            bottom: 400px;
+        }
+
+        .about-section {
+            margin-top: 10px;
+            text-align: left;
+            padding: 10px;
+            position: center;
+            bottom: 0;
+            width: 400px;
+            z-index: 0;
+        }
+
+        .about-section h2 {
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .about-section p {
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .about-section .contact-section {
+            margin-top: 20px;
+        }
+
+        .about-section .contact-section h3 {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .about-section .contact-section p {
+            color: #ffffff;
+        }
+
+        .about-section .social-media-links {
+            margin-top: 20px;
+        }
+
+        .about-section .social-media-links h3 {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .about-section .social-media-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .about-section .social-media-links li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .about-section .social-media-links li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .about-section .social-media-links li a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+<div class="login">
+    <h1>Spam Detector for Email📧</h1>
+    <form action="{{ url_for('predict')}}" method="POST">
+        <textarea name="message" rows="6" cols="50" required="required"></textarea>
+        <br><br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <div class="results">
+            {% if spam_prediction == 1 %}
+                <h2 style="color:#ff0000;">Spam⚠️</h2>
+            {% elif spam_prediction == 0 %}
+                <h2 style="color:#178000;"><b>Not Spam💚</b></h2>
+            {% endif %}
+
+            {% if sentiment_prediction %}
+                <h3>Sentiment: {{ sentiment_prediction }}</h3>
+            {% endif %}
+        </div>
+    </form>
+</div>
+<footer>
+    <div class="about-section">
+        <h2>About Us</h2>
+        <p>This is the "About Us" section of our website.</p>
+        <div class="contact-section">
+            <h3>Contact Us</h3>
+            <p>Email: inbox-secure@gmail.com</p>
+            <p>Phone: +216 55862574</p>
+        </div>
+        <div class="social-media-links">
+            <h3>Follow Us on Social Media</h3>
+            <ul>
+                <li><a href="https://www.facebook.com/">Facebook</a></li>
+                <li><a href="https://twitter.com/">Twitter</a></li>
+                <li><a href="https://www.instagram.com/">Instagram</a></li>
+                <!-- Add more social media links as needed -->
+            </ul>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
